@@ -134,7 +134,11 @@ alarm_control_panel:
   - platform: manual
     name: Home Alarm
     code: '1234'
+<<<<<<< HEAD
     arming_time: 30
+=======
+    pending_time: 30
+>>>>>>> Update manual.markdown (#13463)
     delay_time: 20
     trigger_time: 4
     disarmed:
