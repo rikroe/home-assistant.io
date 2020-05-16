@@ -10,15 +10,20 @@ ha_category:
   - Notifications
 ha_release: 0.64
 ha_iot_class: Cloud Polling
+ha_config_flow: true
 ha_codeowners:
   - '@gerard33'
   - '@rikroe'
 ha_domain: bmw_connected_drive
 ---
 
-The `bmw_connected_drive` integration lets you retrieve data of your BMW vehicle from the BMW Connected Drive portal. You need to have a working BMW Connected Drive account, and a Connected Drive enabled vehicle for this to work.
+The `bmw_connected_drive` integration lets you retrieve data of your BMW vehicle from the BMW Connected Drive portal. You need to have a working BMW Connected Drive account and a Connected Drive enabled vehicle for this to work.
 
 The `bmw_connected_drive` integration also works with (recent) Mini vehicles. You need to have a working Mini Connected account, and a Mini Connected enabled vehicle for this to work.
+
+<div class='note'>
+The entities available in Home Assistant heavily depend on your vehicle's capabilities (model year, headunit, etc.) The integration will make sure all available car attributes are added as entities.
+</div>
 
 For compatibility with your BMW vehicle check the [bimmer_connected page](https://github.com/bimmerconnected/bimmer_connected) on GitHub.
 
@@ -31,16 +36,12 @@ This integration provides the following platforms:
 - Notifications: Send messages or Points of Interest (POI) to your car.
 - Services: Turn on air condition, sound the horn, flash the lights, update the vehicle location and update the state. More details can be found [here](/integrations/bmw_connected_drive/#services).
 
-<div class='note'>
-The entities available in HA heavily depend on your vehicle's capabilities (model year, headunit, etc.) The integration will make sure all available car attributes are shown as entities.
-</div>
-
 ## Configuration
 The preferred way to enable the `bmw_connected_drive`  integration is via Configuration -> Integrations. After connecting to your account, you can set the following settings in the integration's options:
 
 | Setting | Description |
-| Read-only | No execution of services to the vehicle. Still possible to send messages and POIs via `notify`.
-| Use Home Assistant location for car location polls | Older cars require the caller to be close to the car to get location updates. Enable to use the location of your HA instance for these queries. | 
+| Read-only | No execution of services to the vehicle. Still possible to send messages and POIs via `notify` and to request a status update via `bmw_connected_drive.update_state`.
+| Use Home Assistant location for car location polls | Older cars require the phone to be close to the car to get location updates. Enable this option to use the location of your Home Assistant instance for these queries, so updates are available when your car is in the surrounding of your home. | 
 
 The following settings in your `configuration.yaml` file are considered legacy. They will be imported into the config flow and you can set the options from above. Changes to `configuration.yaml` after the first import will be ignored. 
 
