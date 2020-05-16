@@ -31,10 +31,18 @@ This integration provides the following platforms:
 - Notifications: Send messages or Points of Interest (POI) to your car.
 - Services: Turn on air condition, sound the horn, flash the lights, update the vehicle location and update the state. More details can be found [here](/integrations/bmw_connected_drive/#services).
 
-## Configuration
+<div class='note'>
+The entities available in HA heavily depend on your vehicle's capabilities (model year, headunit, etc.) The integration will make sure all available car attributes are shown as entities.
+</div>
 
-To enable this integration in your installation, add the following to your
-`configuration.yaml` file:
+## Configuration
+The preferred way to enable the `bmw_connected_drive`  integration is via Configuration -> Integrations. After connecting to your account, you can set the following settings in the integration's options:
+
+| Setting | Description |
+| Read-only | No execution of services to the vehicle. Still possible to send messages and POIs via `notify`.
+| Use Home Assistant location for car location polls | Older cars require the caller to be close to the car to get location updates. Enable to use the location of your HA instance for these queries. | 
+
+The following settings in your `configuration.yaml` file are considered legacy. They will be imported into the config flow and you can set the options from above. Changes to `configuration.yaml` after the first import will be ignored. 
 
 ```yaml
 # Example configuration.yaml entry
@@ -114,7 +122,7 @@ action:
 
 ## Services
 
-The `bmw_connected_drive` integration offers several services. In case you need to provide the vehicle identification number (VIN) as a parameter, you can see the VIN in the attributes of the device tracker for the vehicle. The VIN is a 17 digit alphanumeric string, e.g., `WBANXXXXXX1234567`.
+The `bmw_connected_drive` integration offers several services. In case you need to provide the vehicle identification number (VIN) as a parameter, you can see the VIN in the `Firmware` field of the device info page. The VIN is a 17 digit alphanumeric string, e.g., `WBANXXXXXX1234567`.
 
 Using these services will impact the state of your vehicle. So use these services with care!
 
